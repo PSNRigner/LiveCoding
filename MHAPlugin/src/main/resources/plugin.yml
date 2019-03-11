@@ -1,0 +1,10 @@
+name: MHAPlugin
+main: com.github.psnrigner.mha.plugin.MHAPluginImpl
+version: 1.0.0
+depend: []
+
+api-version: 1.13
+
+commands:
+  disguise:
+    description: Test command to get disguised (will be removed when the game is complete)

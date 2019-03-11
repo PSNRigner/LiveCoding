@@ -1,0 +1,23 @@
+command:
+  disguise:
+    usage: "{0}Usage : /disguise <SKIN>"
+    undisguised: "{0}Successfully undisguised"
+    undisguised_fail: "{0}Failed to undisguise"
+    invalid_skin: "{0}Invalid skin"
+    disguised: "{0}Successfully disguised"
+    disguised_fail: "{0}Failed to disguise"
+
+game:
+  join: "{0}{1} joined the game"
+  disconnect: "{0}{1} left the game"
+  countdown:
+    step_single: "{0}Game starting in {1} second"
+    step_plural: "{0}Game starting in {1} seconds"
+    starting: "{0}Game starting !"
+
+login:
+  deny_started: "{0}The game has already started"
+
+error:
+  internal: "{0}An internal error has occurred"
+  starting_game: "{0}An error occurred while starting the game, aborting"
