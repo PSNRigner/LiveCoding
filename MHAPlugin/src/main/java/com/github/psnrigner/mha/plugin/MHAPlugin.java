@@ -1,5 +1,6 @@
 package com.github.psnrigner.mha.plugin;
 
+import com.github.psnrigner.mha.plugin.characters.CharacterManager;
 import com.github.psnrigner.mha.plugin.disguises.DisguiseManager;
 import com.github.psnrigner.mha.plugin.game.AbstractGame;
 import com.github.psnrigner.mha.plugin.manager.PlayerManager;
@@ -15,4 +16,6 @@ public interface MHAPlugin extends Plugin
     DisguiseManager getDisguiseManager();
 
     PlayerManager getPlayerManager();
+
+    CharacterManager getCharacterManager();
 }

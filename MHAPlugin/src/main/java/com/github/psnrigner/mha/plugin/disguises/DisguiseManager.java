@@ -1,6 +1,7 @@
 package com.github.psnrigner.mha.plugin.disguises;
 
 import com.github.psnrigner.mha.plugin.MHAPlugin;
+import com.github.psnrigner.mha.plugin.game.MHAPlayer;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import net.minecraft.server.v1_13_R2.EntityHuman;
@@ -98,6 +99,14 @@ public class DisguiseManager
             //packetList.forEach(playerConnection::sendPacket);
         });
 
+        MHAPlayer mhaPlayer = this.plugin.getPlayerManager().getPlayer(player.getUniqueId());
+
+        if (mhaPlayer != null && mhaPlayer.isFrozen())
+        {
+            mhaPlayer.unfreeze();
+            mhaPlayer.freeze();
+        }
+
         return true;
     }
 
@@ -143,8 +152,6 @@ public class DisguiseManager
             selfPacketList.add(new PacketPlayOutRespawn(world.dimension, world.getDifficulty(), world.getWorldData().getType(), EnumGamemode.getById(player.getGameMode().getValue())));
         }
 
-        this.originalSkin.put(player.getUniqueId(), oldProfile);
-
         this.plugin.getServer().getOnlinePlayers().forEach(otherPlayer ->
         {
             PlayerConnection playerConnection = ((CraftPlayer) otherPlayer).getHandle().playerConnection;
@@ -152,6 +159,28 @@ public class DisguiseManager
             (otherPlayer.equals(player) ? selfPacketList : packetList).forEach(playerConnection::sendPacket);
         });
 
+        MHAPlayer mhaPlayer = this.plugin.getPlayerManager().getPlayer(player.getUniqueId());
+
+        if (mhaPlayer != null && mhaPlayer.isFrozen())
+        {
+            mhaPlayer.unfreeze();
+            mhaPlayer.freeze();
+        }
+
         return true;
+    }
+
+    public void undisguiseAll()
+    {
+        this.originalSkin.forEach(((uuid, gameProfile) ->
+        {
+            // Not optimised, but meh, it's only on shutdown
+            Player player = this.plugin.getServer().getPlayer(uuid);
+
+            if (player != null)
+            {
+                this.undisguise(player, false);
+            }
+        }));
     }
 }

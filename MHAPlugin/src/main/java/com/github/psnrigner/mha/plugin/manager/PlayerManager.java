@@ -1,5 +1,6 @@
 package com.github.psnrigner.mha.plugin.manager;
 
+import com.github.psnrigner.mha.plugin.MHAPlugin;
 import com.github.psnrigner.mha.plugin.game.MHAPlayer;
 
 import java.util.HashMap;
@@ -9,10 +10,12 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerManager
 {
+    private final MHAPlugin plugin;
     private final Map<UUID, MHAPlayer> players;
 
-    public PlayerManager()
+    public PlayerManager(MHAPlugin plugin)
     {
+        this.plugin = plugin;
         this.players = new ConcurrentHashMap<>();
     }
 
@@ -32,7 +35,7 @@ public class PlayerManager
 
         this.players.forEach((uuid, player) ->
         {
-            if (true /* TODO !player.isSpectator()*/)
+            if (player.getPlayer() != null /* TODO && !player.isSpectator()*/)
             {
                 inGamePlayers.put(uuid, player);
             }
@@ -43,7 +46,7 @@ public class PlayerManager
 
     public void onLogin(UUID uuid)
     {
-        this.players.put(uuid, new MHAPlayer(uuid));
+        this.players.put(uuid, new MHAPlayer(this.plugin, uuid));
     }
 
     public void onLogout(UUID uuid)

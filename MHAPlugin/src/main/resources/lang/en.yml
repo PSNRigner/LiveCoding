@@ -21,3 +21,21 @@ login:
 error:
   internal: "{0}An internal error has occurred"
   starting_game: "{0}An error occurred while starting the game, aborting"
+
+skill:
+  deku:
+    detroit_smash: "Detroit Smash"
+    saint_louis_smash: "St. Louis Smash"
+    full_cowl: "Full Cowl"
+  katsuki:
+    stun_grenade: "Stun Grenade"
+    blast_rush: "Blast Rush"
+    ap_shot: "AP Shot"
+    howitzer_impact: "Howitzer Impact"
+
+  description:
+    ultimate: "Ultimate Skill"
+    cooldown_single: "Cooldown : {0} second"
+    cooldown_plural: "Cooldown : {0} seconds"
+    time_single: "Time : {0} second"
+    time_plural: "Time : {0} seconds"
